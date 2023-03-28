@@ -1,11 +1,9 @@
 import org.junit.Test;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
-
 import static org.junit.Assert.assertEquals;
 import static praktikum.IngredientType.FILLING;
 import static praktikum.IngredientType.SAUCE;
-
 import  org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 

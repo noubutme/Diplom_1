@@ -10,10 +10,9 @@ import praktikum.Burger;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
-import static java.lang.String.format;
 
 @RunWith(MockitoJUnitRunner.class)
-public class BurgerTests {
+public class BurgerTest {
     @Mock
     private Bun testBun;
     @Mock
@@ -51,5 +50,27 @@ public class BurgerTests {
                         " ====)%n%nPrice: %f%n"),
                 testBurger.getPrice());
         Assert.assertEquals(expectedReceipt, testBurger.getReceipt());
+    }
+    @Test
+    public void removeIngredientTest(){
+        Burger testBurger = new Burger();
+        testBurger.addIngredient(testIngredient);
+        int countBeforeRemove = testBurger.ingredients.size();
+        testBurger.removeIngredient(countBeforeRemove-1);
+        int countAfterRemove = testBurger.ingredients.size();
+        Assert.assertEquals(1,countBeforeRemove - countAfterRemove);
+    }
+
+    @Test
+    public void moveIngredientTest(){
+        Burger testBurger = new Burger();
+        testBurger.addIngredient(testIngredient);
+        Ingredient newIngredient = new Ingredient(IngredientType.SAUCE,"Тучный", 300F);
+        testBurger.addIngredient(newIngredient);
+        int FirstIndexOfNewIngredient = testBurger.ingredients.indexOf(newIngredient);
+        testBurger.moveIngredient(FirstIndexOfNewIngredient,0);
+        int SecondIndexOfIngredient = testBurger.ingredients.indexOf(newIngredient);
+        Assert.assertEquals(1,FirstIndexOfNewIngredient);
+        Assert.assertEquals(0,SecondIndexOfIngredient);
     }
 }
